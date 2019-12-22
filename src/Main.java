@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Main.class.getResource("views/Home.fxml"));
-        primaryStage.setTitle("Projet");
+        primaryStage.setTitle("Image Matcher");
         primaryStage.setScene(new Scene(root, 1280, 768));
         primaryStage.setMinWidth(768);
         primaryStage.setMinHeight(768);
