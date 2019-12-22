@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/8.0.172-ea"
+      fx:controller="projetprog.controllers.HomeController"
+      prefHeight="Infinity"
+      stylesheets="/projetprog/css/general.css">
+
+    <padding>
+        <Insets bottom="15"
+                left="15"
+                right="15"
+                top="15"/>
+    </padding>
+
+    <HBox spacing="15">
+        <padding>
+            <Insets bottom="15"/>
+        </padding>
+        <Button fx:id="selRefImageButton"
+                text="Select Reference Image"
+                onAction="#bttImageSelectClicked"/>
+        <Button fx:id="selCompDirButton" text="Select Comparison Directory" onAction="#bttFolderSelectClicked"/>
+        <Button fx:id="computeButton" text="Compute Raw Distance" onAction="#bttComputeClicked" disable="true"/>
+        <Button fx:id="computeButtonOpponentColorAxes" text="Compute Distance Opponent Color Axes"
+                onAction="#bttComputeClickedOpponentColorAxes" disable="true"/>
+    </HBox>
+
+    <SplitPane orientation="VERTICAL"
+               maxHeight="Infinity">
+        <GridPane hgap="15">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="300"/>
+                <ColumnConstraints maxWidth="Infinity"/>
+            </columnConstraints>
+
+            <padding>
+                <Insets bottom="15"/>
+            </padding>
+
+            <ImageView fx:id="referenceImageView"
+                       GridPane.columnIndex="0"
+                       GridPane.halignment="CENTER"
+                       fitHeight="275"
+                       fitWidth="275"
+                       pickOnBounds="true"
+                       preserveRatio="true">
+
+                <Image url="@/projetprog/resources/missing.png"/>
+            </ImageView>
+
+            <BarChart fx:id="histogramChart"
+                      GridPane.hgrow="ALWAYS"
+                      GridPane.vgrow="ALWAYS"
+                      GridPane.columnIndex="1"
+                      legendVisible="false">
+                <xAxis>
+                    <CategoryAxis label="Color Intensity"
+                                  side="BOTTOM"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Color Occurrence (%)"
+                                side="LEFT"/>
+                </yAxis>
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <VBox.margin>
+                    <Insets bottom="15.0"
+                            left="15.0"
+                            right="15.0"
+                            top="15.0"/>
+                </VBox.margin>
+            </BarChart>
+        </GridPane>
+
+        <GridPane hgap="15">
+            <columnConstraints>
+                <ColumnConstraints maxWidth="Infinity"/>
+                <ColumnConstraints prefWidth="300"/>
+            </columnConstraints>
+
+            <padding>
+                <Insets top="15"
+                        bottom="15"
+                        left="15"
+                        right="15"/>
+            </padding>
+
+            <TableView fx:id="filesTable" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="rankColumn"
+                                 editable="false"
+                                 minWidth="35.0"
+                                 prefWidth="50.0"
+                                 text="Rank"/>
+
+                    <TableColumn fx:id="fileNameColumn"
+                                 editable="false"
+                                 minWidth="100.0"
+                                 prefWidth="500.0"
+                                 text="File Name"/>
+
+                    <TableColumn fx:id="distanceColumn"
+                                 editable="false"
+                                 maxWidth="Infinity"
+                                 minWidth="100.0"
+                                 prefWidth="200.0"
+                                 text="Distance"/>
+                </columns>
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+            </TableView>
+
+            <ImageView fx:id="closestImageView"
+                       GridPane.columnIndex="1"
+                       fitHeight="275"
+                       fitWidth="275"
+                       GridPane.halignment="CENTER"
+                       pickOnBounds="true"
+                       preserveRatio="true">
+
+                <Image url="@/projetprog/resources/missing.png"/>
+            </ImageView>
+        </GridPane>
+    </SplitPane>
+
+</VBox>
